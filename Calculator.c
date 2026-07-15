@@ -1,62 +1,114 @@
 #include <stdio.h>
+#include <math.h>
 
 int main(void) {
 
-    int a;
-    int b;
+    double result = 0.0;
+    double next_num;
     int choice;
-    int result;
+    bool keep_running = true;
+    bool is_first_run= true;
 
-    printf("Enter your 1st number : ");
-    scanf("%i", &a);
-    printf("\n");
-    printf("Enter your 2nd number : ");
-    scanf("%i", &b);
-    printf("\n");
+    printf("------------------------------------------------- \n");
+    printf("CONTINUOUS SCIENTIFIC CALCULATOR \n");
+    printf("------------------------------------------------- \n");
 
-    printf("The arithmetic opertors you can perform are : \n1. Addition \n2. Subtracton \n3. Multiplication \n4. Division \n5. Modulo \n");
-    printf("Enter your choice from the following list : ");
-    scanf("%i", &choice);
-    printf("\n");
-
-    switch (choice)
+    while (keep_running)
     {
-    case 1:
-        result = a + b;
-        printf("The answer of your addition is : %i \n", result);
-        break;
-    case 2:
-        result = a - b;
-        printf("The answer of your subtraction is : %i \n", result);
-        break;
-    case 3:
-        result = a * b;
-        printf("The answer of your multiplication is : %i \n", result);
-        break;
-    case 4:
-        if (b != 0) {
-            result = a / b;
-            printf("The result of your division is : %i \n", result);
-        }
-        else {
-            printf("Second number invalid! \n");
-        }
-        break;
-    case 5:
-        if (b != 0) {
-            result = a % b;
-            printf("The result of your modulo is : %i \n", result);
-        }
-        else {
-            printf("Second number invalid! \n");
-        }
-    
-    default:
-    printf("Pick a valid choice! \n");
-        break;
-    }
-    
 
+        if (is_first_run) {
+            printf("Enter your first num : ");
+            scanf("%lf", &result);
+            is_first_run = false;
+        }
+        
+        printf("--------------------------------------------- \n");
+        printf("Answer : \n");
+        printf("%.2f \n", result);
+        printf("\n");
+        printf("--------------------------------------------- \n");
+
+        printf("The arithmetic opertors you can perform are : \n"
+            "1. Addition \n"
+            "2. Subtracton \n"
+            "3. Multiplication \n"
+            "4. Division \n"
+            "5. Modulo \n"
+            "6. Natural log \n"
+            "7. Log (number 2 base) \n"
+            "8. Clear everything \n"
+            "9. Exit the calculator \n");
+        printf("Enter your choice from the following list : ");
+        scanf("%i", &choice);
+        printf("\n");
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter number : ");
+            scanf("%lf", &next_num);
+            result += next_num;
+            break;
+        
+        case 2:
+            printf("Enter number : ");
+            scanf("%lf", &next_num);
+            result -= next_num;
+            break;
+
+        case 3:
+            printf("Enter number : ");
+            scanf("%lf", &next_num);
+            result = result * next_num;
+            break;
+
+        case 4:
+            printf("Enter number : ");
+            scanf("%lf", &next_num);
+            if (next_num != 0) {
+                result /= next_num;
+            }
+            else {
+                printf("Number invalid. \n");
+            }
+            break;
+
+        case 5: 
+            printf("Enter number : ");
+            scanf("%lf", &next_num);
+            if (next_num != 0) {
+                result = fmod(result, next_num);
+            }
+            else {
+                printf("Invalid number. \n");
+            }
+            break;
+
+        case 6 :
+            result = log(result);
+            break;
+
+        case 7:
+            printf("Enter number : ");
+            scanf("%lf", &next_num);
+            result = log(result) / log(next_num);
+            break;
+
+        case 8:
+            is_first_run = true;
+            result = 0.0;
+            break;
+
+        case 9:
+            keep_running = false;
+            break;
+        
+        default:
+        printf("Pick a valid choice! \n");
+            break;
+        }
+
+    }
 
     return 0;
 }
