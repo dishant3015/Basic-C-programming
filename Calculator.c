@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 int main(void) {
 
@@ -15,6 +16,8 @@ int main(void) {
 
     while (keep_running)
     {
+
+        system("cls");
 
         if (is_first_run) {
             printf("Enter your first num : ");
@@ -38,7 +41,8 @@ int main(void) {
             "7. Log (number 2 base) \n"
             "8. Exponent to 2 \n"
             "9. Exponent to n number \n"
-            "10. Factorial \n");
+            "10. Factorial \n"
+            "11. Under root 2 \n");
 
         printf("--------------------------------------------- \n");
         printf("Enter 888 for clearing the current answer. \n"
@@ -92,7 +96,10 @@ int main(void) {
             break;
 
         case 6 :
-            result = log(result);
+            if (result == 0) {
+                printf("Invalid number. \n");
+
+            }
             break;
 
         case 7:
@@ -125,6 +132,10 @@ int main(void) {
                 result = x;
                 break;
             }
+
+        case 11:
+            result = pow(result, 0.5);
+            break;
 
         case 888:
             is_first_run = true;
